@@ -1,31 +1,22 @@
 <script lang="ts" setup>
-import { tasks } from '@/stores/tasks'
 import TaskContainer from '@/components/TaskContainer.vue'
-import { reversedTasks } from '@/stores/tasks'
-import { onMounted, watch } from 'vue'
+import { useTasks } from '@/stores/tasks'
+import { onMounted } from 'vue'
 
-watch(
-  () => tasks.value,
-  (val) => {
-    window.localStorage.setItem('tasks', JSON.stringify(val))
-  }
-)
+const { tasks, reversedTasks } = useTasks()
 
 onMounted(() => {
-  tasks.value = JSON.parse(`${window.localStorage.getItem('tasks')}`) ?? []
+  const getTodos = async () => {
+    const response = await fetch('https://jsonplaceholder.typicode.com/todos')
+    if (response.ok) {
+      tasks.value = await response.json()
+    }
+  }
+  getTodos()
 })
-
-const handleClear = () => {
-  tasks.value = []
-}
 </script>
 <template>
-  <div id="tasks-list">
-    <template v-if="tasks.length">
-      <TaskContainer v-for="(task, i) in reversedTasks" v-bind:key="i" :index="i" :task="task" />
-      <button @click.prevent="handleClear" id="clear-tasks">Limpar</button>
-    </template>
-    <div v-else class="alert-box">Você não tem tarefas!</div>
+  <div class="flex flex-col items-center gap-4 overflow-y-auto p-4 bg-slate-100">
+    <TaskContainer v-for="(task, i) in reversedTasks" v-bind:key="i" :task="task" />
   </div>
 </template>
-<style src="../styles/components/TasksList.css" scoped></style>

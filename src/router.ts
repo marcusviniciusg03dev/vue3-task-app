@@ -18,7 +18,7 @@ export const router = createRouter({
       component: TasksView
     },
     {
-      path: '/tasks/:index',
+      path: '/tasks/:id',
       name: 'task',
       component: TaskView
     }

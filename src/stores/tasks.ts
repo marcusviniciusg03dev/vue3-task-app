@@ -1,5 +1,13 @@
+import type { ITask } from '@/interfaces/ITask'
 import { computed, ref } from 'vue'
 
-export const tasks = ref<object[]>([])
+const tasks = ref<ITask[]>([])
 
-export const reversedTasks = computed(() => [...tasks.value].reverse())
+export const useTasks = () => {
+  const reversedTasks = computed(() => [...tasks.value].reverse())
+
+  return {
+    tasks,
+    reversedTasks
+  }
+}

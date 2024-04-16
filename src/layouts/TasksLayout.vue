@@ -2,9 +2,8 @@
 import NewTask from '@/components/NewTask.vue'
 </script>
 <template>
-  <div id="layout">
+  <div class="h-screen grid grid-rows-[10rem_auto]">
     <NewTask />
     <slot></slot>
   </div>
 </template>
-<style src="../styles/layouts/TasksLayout.css" scoped></style>
