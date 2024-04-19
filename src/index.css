@@ -1,3 +1,18 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+#app {
+  position: relative;
+}
+
+.alert-enter-active,
+.alert-leave-active {
+  transition: all 0.5s ease;
+}
+
+.alert-enter-from,
+.alert-leave-to {
+  opacity: 0;
+  margin-top: 0;
+}
