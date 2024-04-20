@@ -3,26 +3,34 @@ import HomeView from '@/views/home/HomeView.vue'
 import TasksView from '@/views/tasks/TasksView.vue'
 import TaskView from '@/views/task/TaskView.vue'
 import { hasUser, userStore } from './stores/user'
+import { langsList } from './langs'
 
 export const router = createRouter({
   history: createWebHistory(),
   routes: [
     {
-      path: '/',
+      path: '/:lang/',
       name: 'home',
       component: HomeView
     },
     {
-      path: '/tasks',
+      path: '/:lang/tasks',
       name: 'tasks',
       component: TasksView
     },
     {
-      path: '/tasks/:id',
+      path: '/:lang/tasks/:id',
       name: 'task',
       component: TaskView
     }
   ]
+})
+
+router.beforeEach((to, _from, next) => {
+  if (!langsList.includes(to.params.lang as string)) {
+    next('/en/')
+  }
+  next()
 })
 
 router.beforeEach((_to, _from, next) => {

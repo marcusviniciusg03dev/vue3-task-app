@@ -1,6 +1,9 @@
 <script lang="ts" setup>
 import { useTasks } from '@/stores/tasks'
-import { Teleport, ref } from 'vue'
+import { vFocus } from '@/directives/vFocus'
+import { Teleport, inject, ref } from 'vue'
+
+const translate = inject('translate')
 
 const title = defineModel<string>({
   type: String
@@ -25,7 +28,7 @@ const handleSubmit = async () => {
     error.value = null
   }
   if (!title.value) {
-    return runErrorAlert('O título está vazio!')
+    return runErrorAlert(translate('newTask.errors.emptyTitle'))
   }
   const response = await fetch('https://jsonplaceholder.typicode.com/todos', {
     method: 'POST',
@@ -38,7 +41,7 @@ const handleSubmit = async () => {
     }
   })
   if (!response.ok) {
-    return runErrorAlert('Não foi possível criar item.')
+    return runErrorAlert(translate('newTask.errors.cannotCreate'))
   }
   const createdTask = await response.json()
   tasks.value = [...tasks.value, createdTask]
@@ -57,17 +60,18 @@ const handleSubmit = async () => {
   <header class="p-5 bg-slate-800 text-[#fefefe] flex items-center justify-center">
     <form @submit.prevent="handleSubmit" class="flex gap-4">
       <input
+        v-focus
         @keyup.prevent="handleTyping"
         v-model="title"
-        placeholder="Título"
-        class="border-0 bg-[#fefefe] text-black rounded-md w-full min-w-[25rem] p-4 placeholder:tracking-wider placeholder:font-bold"
+        :placeholder="translate('newTask.titlePlaceholder')"
+        class="border-0 bg-[#fefefe] text-black rounded-md w-full min-w-[25rem] p-4 placeholder:tracking-wider placeholder:font-bold focus:border-2 focus:border-blue-400 outline-none"
       />
       <button
         type="submit"
         :disabled="isTyping"
         class="p-4 px-5 bg-red-600 font-bold border-0 rounded-md tracking-wider hover:shadow-lg"
       >
-        {{ isTyping ? 'Digitando...' : 'Adicionar' }}
+        {{ isTyping ? translate('_shared.typing') : translate('newTask.add') }}
       </button>
     </form>
   </header>
