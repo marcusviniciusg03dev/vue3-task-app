@@ -9,13 +9,16 @@ const handleChangeRoute = (e: any) => {
 }
 </script>
 <template>
+  <div id="message-box-area" />
+  <div class="flex justify-end bg-slate-800 py-4 px-5">
+    <select
+      name="route"
+      class="z-10 right-5 top-2 p-2 bg-black text-slate-100 rounded-sm"
+      @change="handleChangeRoute"
+      :value="$route.params.lang"
+    >
+      <option v-for="lang in Object.keys(langs)" :key="lang" :value="lang">{{ lang }}</option>
+    </select>
+  </div>
   <router-view />
-  <select
-    name="route"
-    class="absolute right-5 top-2 p-2 bg-black text-slate-100 rounded-sm"
-    @change="handleChangeRoute"
-    :value="$route.params.lang"
-  >
-    <option v-for="lang in Object.keys(langs)" :key="lang" :value="lang">{{ lang }}</option>
-  </select>
 </template>

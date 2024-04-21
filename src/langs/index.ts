@@ -19,6 +19,7 @@ export interface ILang {
     }
   }
   taskView: {
+    back: string
     errors: {
       notFound: string
     }

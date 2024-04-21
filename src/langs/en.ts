@@ -18,6 +18,7 @@ export const en: ILang = {
     }
   },
   taskView: {
+    back: 'back',
     completedLabel: 'completed',
     userIdLabel: 'User id',
     errors: {

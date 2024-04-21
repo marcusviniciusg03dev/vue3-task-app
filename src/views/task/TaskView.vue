@@ -3,6 +3,7 @@ import { inject, onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
 
 import { ITask } from '@/interfaces/ITask'
+import Button from '@/components/Button.vue'
 
 const translate = inject('translate')
 
@@ -32,12 +33,7 @@ onMounted(() => {
 </script>
 <template>
   <main class="h-screen w-full bg-gray-50 p-16">
-    <button
-      @click.prevent="$router.back()"
-      class="p-2 rounded-3xl bg-gray-900 text-slate-50 min-w-28 font-bold border-2 hover:bg-slate-100 hover:text-slate-600 transition-all duration-75"
-    >
-      voltar
-    </button>
+    <Button @handle-click="() => $router.back()">{{ translate('taskView.back') }}</Button>
     <div v-if="loading" id="loading">{{ translate('_shared.loading') }}</div>
     <div v-else-if="error" id="error">
       {{ error }}

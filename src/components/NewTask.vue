@@ -2,6 +2,7 @@
 import { useTasks } from '@/stores/tasks'
 import { vFocus } from '@/directives/vFocus'
 import { Teleport, inject, ref } from 'vue'
+import Button from './Button.vue'
 
 const translate = inject('translate')
 
@@ -49,9 +50,9 @@ const handleSubmit = async () => {
 }
 </script>
 <template>
-  <Teleport to="#app">
+  <Teleport to="#message-box-area">
     <Transition name="alert">
-      <div v-if="error" class="mt-8 right-8 flex absolute bg-red-100 p-6 rounded-sm shadow-md">
+      <div v-if="error" class="mt-20 right-8 flex absolute bg-red-100 p-6 rounded-sm shadow-md">
         <p class="text-red-500 font-bold">{{ error }}</p>
       </div>
     </Transition>
@@ -66,13 +67,9 @@ const handleSubmit = async () => {
         :placeholder="translate('newTask.titlePlaceholder')"
         class="border-0 bg-[#fefefe] text-black rounded-md w-full min-w-[25rem] p-4 placeholder:tracking-wider placeholder:font-bold focus:border-2 focus:border-blue-400 outline-none"
       />
-      <button
-        type="submit"
-        :disabled="isTyping"
-        class="p-4 px-5 bg-red-600 font-bold border-0 rounded-md tracking-wider hover:shadow-lg"
-      >
+      <Button type="submit" :disabled="isTyping" variant="secondary">
         {{ isTyping ? translate('_shared.typing') : translate('newTask.add') }}
-      </button>
+      </Button>
     </form>
   </header>
 </template>
