@@ -65,7 +65,7 @@ const handleSubmit = async () => {
         @keyup.prevent="handleTyping"
         v-model="title"
         :placeholder="translate('newTask.titlePlaceholder')"
-        class="border-0 bg-[#fefefe] text-black rounded-md w-full min-w-[25rem] p-4 placeholder:tracking-wider placeholder:font-bold focus:border-2 focus:border-blue-400 outline-none"
+        class="border-0 bg-[#fefefe] text-black rounded-md w-full max-w-[25rem] p-4 placeholder:tracking-wider placeholder:font-bold focus:border-2 focus:border-blue-400 outline-none sm:w-[20rem] md:w-[25rem]"
       />
       <Button type="submit" :disabled="isTyping" variant="secondary">
         {{ isTyping ? translate('_shared.typing') : translate('newTask.add') }}

@@ -13,7 +13,7 @@ onUnmounted(() => {
 })
 </script>
 <template>
-  <main class="h-screen bg-[#ff0000] flex flex-col items-center justify-center gap-10">
+  <main class="p-4 bg-[#ff0000] flex flex-col items-center justify-center gap-10">
     <div class="grid gap-4 text-gray-50" v-show="!user.hasUser">
       <p>{{ translate('home.noNameMessage') }}</p>
       <input
