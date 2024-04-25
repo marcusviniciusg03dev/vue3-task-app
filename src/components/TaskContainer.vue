@@ -3,16 +3,17 @@ import { useTasks } from '@/stores/tasks'
 import { inject } from 'vue'
 const props = defineProps(['task'])
 
-const { tasks, reversedTasks } = useTasks()
+const tasks = useTasks()
 
 const handleDelete = async () => {
   const response = await fetch(`https://jsonplaceholder.typicode.com/todos/${props.task.id}`, {
     method: 'DELETE'
   })
   if (response.ok) {
-    tasks.value = [...reversedTasks.value.filter((item) => item.id !== props.task.id)].reverse()
+    tasks.remove(props.task.id)
   }
-}
+} 
+
 const translate = inject('translate')
 </script>
 <template>

@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '@/views/home/HomeView.vue'
 import TasksView from '@/views/tasks/TasksView.vue'
 import TaskView from '@/views/task/TaskView.vue'
-import { hasUser, userStore } from './stores/user'
+import { userStore } from './stores/user'
 import { langsList } from './langs'
 
 export const router = createRouter({
@@ -34,9 +34,10 @@ router.beforeEach((to, _from, next) => {
 })
 
 router.beforeEach((_to, _from, next) => {
+  const user = userStore()
   const userName = window.localStorage.getItem('user_name')
-  if (!hasUser.value && userName) {
-    userStore.set(userName!)
+  if (!user.hasUser && userName) {
+    user.set(userName!)
   }
   next()
 })

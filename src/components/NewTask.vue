@@ -19,7 +19,7 @@ const handleTyping = () => {
     isTyping.value = false
   }, 500)
 }
-const { tasks } = useTasks()
+const tasks = useTasks()
 const runErrorAlert = (text: string) => {
   error.value = text
   setTimeout(() => (error.value = null), 4000)
@@ -45,7 +45,7 @@ const handleSubmit = async () => {
     return runErrorAlert(translate('newTask.errors.cannotCreate'))
   }
   const createdTask = await response.json()
-  tasks.value = [...tasks.value, createdTask]
+  tasks.add(createdTask)
   title.value = ''
 }
 </script>

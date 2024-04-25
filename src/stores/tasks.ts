@@ -1,13 +1,22 @@
 import type { ITask } from '@/interfaces/ITask'
-import { computed, ref } from 'vue'
+import { defineStore } from 'pinia'
 
-const tasks = ref<ITask[]>([])
-
-export const useTasks = () => {
-  const reversedTasks = computed(() => [...tasks.value].reverse())
-
-  return {
-    tasks,
-    reversedTasks
+export const useTasks = defineStore('tasks', {
+  state: () => ({ list: <ITask[]>[] }),
+  getters: {
+    reverse(): ITask[] {
+      return [...this.list].reverse()
+    }
+  },
+  actions: {
+    set(tasks: ITask[]) {
+      this.list = tasks
+    },
+    add(task: ITask) {
+      this.$state.list.push(task)
+    },
+    remove(id: number) {
+      this.$state.list = this.$state.list.filter((item) => item.id !== id)
+    }
   }
-}
+})
