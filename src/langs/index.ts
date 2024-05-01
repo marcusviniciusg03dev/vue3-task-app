@@ -20,9 +20,7 @@ export interface ILang {
   }
   taskView: {
     back: string
-    errors: {
-      notFound: string
-    }
+    
     completedLabel: string
     userIdLabel: string
   }
@@ -32,6 +30,10 @@ export interface ILang {
     remove: string
     true: string
     false: string
+    errors: {
+      notFound: string
+      unexpected: string
+    }
   }
 }
 

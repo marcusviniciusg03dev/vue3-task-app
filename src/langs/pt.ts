@@ -21,15 +21,17 @@ export const pt: ILang = {
     back: 'voltar',
     completedLabel: 'completo',
     userIdLabel: 'Id do usuário',
-    errors: {
-      notFound: 'Item não encontrado.'
-    }
+    
   },
   _shared: {
     typing: 'Digitando...',
     loading: 'carregando...',
     remove: 'remover',
     true: 'verdadeiro',
-    false: 'falso'
+    false: 'falso',
+    errors: {
+      notFound: 'Item não encontrado.',
+      unexpected: 'Houve um erro inesperado.'
+    }
   }
 }

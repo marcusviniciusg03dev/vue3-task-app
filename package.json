@@ -4,9 +4,9 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "run-p type-check \"build-only {@}\" --",
-    "preview": "vite preview",
+    "dev": "nuxt dev",
+    "build": "nuxt build",
+    "preview": "nuxt preview",
     "test:unit": "vitest",
     "test:e2e": "start-server-and-test preview http://localhost:4173 'cypress run --e2e'",
     "test:e2e:dev": "start-server-and-test 'vite dev --port 4173' http://localhost:4173 'cypress open --e2e'",
@@ -16,7 +16,10 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
+    "@pinia/nuxt": "^0.5.1",
     "autoprefixer": "^10.4.19",
+    "nuxi": "^3.11.1",
+    "nuxt": "^3.11.2",
     "pinia": "^2.1.7",
     "postcss": "^8.4.38",
     "tailwindcss": "^3.4.3",

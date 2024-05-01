@@ -21,15 +21,16 @@ export const en: ILang = {
     back: 'back',
     completedLabel: 'completed',
     userIdLabel: 'User id',
-    errors: {
-      notFound: 'Item not found.'
-    }
   },
   _shared: {
     typing: 'Typing...',
     remove: 'remove',
     loading: 'loading...',
     true: 'true',
-    false: 'false'
+    false: 'false',
+    errors: {
+      notFound: 'Item not found.',
+      unexpected: 'An unexpected error ocurred.'
+    }
   }
 }

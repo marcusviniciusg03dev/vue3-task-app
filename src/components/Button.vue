@@ -1,8 +1,8 @@
 <script lang="ts" setup>
 const props = withDefaults(
   defineProps<{
-    type: 'button' | 'submit' | 'reset' | undefined
-    variant: 'primary' | 'secondary'
+    type?: 'button' | 'submit' | 'reset' | undefined
+    variant?: 'primary' | 'secondary'
   }>(),
   {
     type: undefined,
@@ -21,7 +21,7 @@ const getVariantStyle: () => string = () => {
 <template>
   <button
     @click="emit('handle-click')"
-    :type="$props.type"
+    :type="props.type"
     :class="`${getVariantStyle()} p-2 rounded-md min-w-28 font-bold border-0 transition-all duration-75 tracking-wider ${
       $props.class
     }`"
