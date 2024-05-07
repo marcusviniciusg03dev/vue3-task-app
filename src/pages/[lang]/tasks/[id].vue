@@ -12,6 +12,14 @@ const route = useRoute()
 const task = await useFetch<ITask>(`https://jsonplaceholder.typicode.com/todos/${route.params.id}`, {
   watch: [ref(route.params.id)]
 })
+
+useHead({
+  title: task.data.value?.title,
+  meta: [
+    { name: 'description', content: 'Visualizar tarefa.' },
+    { name: 'robots', content: 'noindex,nofollow' }
+  ]
+})
 </script>
 <template>
   <main class="h-full w-full bg-gray-50 p-16">

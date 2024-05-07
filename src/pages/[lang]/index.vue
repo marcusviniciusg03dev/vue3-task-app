@@ -2,6 +2,14 @@
 import { inject, onUnmounted } from 'vue'
 import { userStore } from '../../stores/user'
 
+useHead({
+  title: 'Página Inicial | Entrar',
+  meta: [
+    { name: 'description', content: 'Entrar na aplicação.' },
+    { name: 'robots', content: 'noindex,nofollow' }
+  ]
+})
+
 const route = useRoute()
 const user = userStore()
 const translate = inject('translate')

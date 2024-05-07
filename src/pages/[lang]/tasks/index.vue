@@ -4,6 +4,14 @@ import { useTasks } from '@/stores/tasks'
 import { storeToRefs } from 'pinia';
 import { onMounted } from 'vue';
 
+useHead({
+  title: 'Tarefas',
+  meta: [
+    { name: 'description', content: 'Suas tarefas.' },
+    { name: 'robots', content: 'noindex,nofollow' }
+  ]
+})
+
 const tasks = useTasks()
 const { list } = storeToRefs(tasks)
 

@@ -15,6 +15,7 @@ onMounted(() => {
 })
 </script>
 <template>
+  <NuxtLoadingIndicator color="red" />
   <div id="message-box-area" />
   <div class="h-screen grid grid-rows-[10%_90%]">
     <div class="flex justify-end bg-slate-800 py-4 px-5">
